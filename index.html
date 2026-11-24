@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeSoto Auto Concierge | Easy Car Buying, Selling & Support</title>
+  <style>
+    :root {
+      --bg-page: #f8f9fa;
+      --bg-card: #ffffff;
+      --text-dark: #1a202c;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --primary-navy: #1e3a5f;
+      --primary-hover: #142842;
+      --accent-bg: #fef3c7;
+      --accent-text: #78350f;
+      --border-light: #cbd5e1;
+      --success-green: #15803d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-body);
+      line-height: 1.65;
+      padding: 20px 16px 60px;
+    }
+
+    .ds-wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    /* Header Bar */
+    .ds-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 36px;
+    }
+
+    .ds-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .ds-logo-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--primary-navy);
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ds-brand-text h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--text-dark);
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .ds-brand-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .ds-email-link {
+      background-color: #ffffff;
+      border: 1.5px solid var(--primary-navy);
+      color: var(--primary-navy);
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .ds-email-link:hover {
+      background-color: var(--primary-navy);
+      color: #ffffff;
+    }
+
+    /* Hero Section */
+    .ds-hero {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 44px;
+    }
+
+    .ds-badge {
+      display: inline-block;
+      background-color: #e0e7ff;
+      color: var(--primary-navy);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ds-hero h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      color: var(--text-dark);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      font-weight: 800;
+    }
+
+    .ds-hero p {
+      font-size: 18px;
+      color: var(--text-body);
+      margin: 0 0 24px;
+    }
+
+    /* Three Offerings Grid */
+    .ds-offerings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .ds-price-card {
+      background: var(--bg-card);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ds-price-card h3 {
+      font-size: 21px;
+      color: var(--primary-navy);
+      margin: 0 0 8px;
+    }
+
+    .ds-price-tag {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .ds-guarantee {
+      background-color: var(--accent-bg);
+      color: var(--accent-text);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .ds-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+
+    .ds-checklist li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      font-size: 15.5px;
+      color: var(--text-body);
+    }
+
+    .ds-checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success-green);
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .ds-card-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      background-color: #f1f5f9;
+      color: var(--primary-navy);
+      border: 1.5px solid var(--primary-navy);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ds-card-btn:hover {
+      background-color: var(--primary-navy);
+      color: #ffffff;
+    }
+
+    /* Classic Car / Hands-Off Callout */
+    .ds-senior-banner {
+      background-color: #ffffff;
+      border-left: 5px solid var(--primary-navy);
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 24px 28px;
+      border-radius: 8px;
+      margin-bottom: 44px;
+    }
+
+    .ds-senior-banner h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: var(--text-dark);
+    }
+
+    .ds-senior-banner p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text-body);
+    }
+
+    /* Form Section */
+    .ds-form-box {
+      background: var(--bg-card);
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 36px 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .ds-form-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .ds-form-header h2 {
+      font-size: 26px;
+      color: var(--text-dark);
+      margin: 0 0 8px;
+    }
+
+    .ds-form-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .ds-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .ds-choice-btn {
+      border: 2px solid #cbd5e1;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .ds-choice-btn:hover {
+      border-color: var(--primary-navy);
+    }
+
+    .ds-choice-btn.active {
+      border-color: var(--primary-navy);
+      background: #eff6ff;
+      box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.2);
+    }
+
+    .ds-choice-btn strong {
+      display: block;
+      font-size: 17px;
+      color: var(--primary-navy);
+      margin-bottom: 4px;
+    }
+
+    .ds-choice-btn span {
+      font-size: 13.5px;
+      color: var(--text-body);
+      display: block;
+    }
+
+    /* Additional Services Sub-Options */
+    .ds-addon-box {
+      display: none;
+      background-color: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .ds-addon-box.visible {
+      display: block;
+    }
+
+    .ds-addon-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .ds-checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .ds-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      padding: 12px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .ds-checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-navy);
+      cursor: pointer;
+    }
+
+    .ds-field-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 6px;
+    }
+
+    .ds-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .ds-field label {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .ds-field input,
+    .ds-field select,
+    .ds-field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: var(--text-dark);
+      font-family: inherit;
+    }
+
+    .ds-field input:focus,
+    .ds-field select:focus,
+    .ds-field textarea:focus {
+      outline: none;
+      border-color: var(--primary-navy);
+      box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.15);
+    }
+
+    .ds-submit-btn {
+      width: 100%;
+      background-color: var(--primary-navy);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .ds-submit-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .ds-submit-btn:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    /* Confirmation Box */
+    .ds-thank-you {
+      display: none;
+      text-align: center;
+      padding: 32px 16px;
+    }
+
+    .ds-check-circle {
+      width: 60px;
+      height: 60px;
+      background-color: #dcfce7;
+      color: var(--success-green);
+      border-radius: 50%;
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .ds-receipt {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 540px;
+      margin: 20px auto;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .ds-receipt p {
+      margin: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .ds-receipt p:last-child {
+      border-bottom: none;
+    }
+
+    /* Footer */
+    .ds-footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #cbd5e1;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .ds-footer a {
+      color: var(--primary-navy);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .ds-form-box {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-wrapper">
+    <!-- Top Header -->
+    <div class="ds-header">
+      <a href="#" class="ds-brand">
+        <div class="ds-logo-circle">D</div>
+        <div class="ds-brand-text">
+          <h2>DeSoto Auto Concierge</h2>
+          <span>Colorado's Personal Car Buying, Selling & Support Helper</span>
+        </div>
+      </a>
+      <a href="mailto:CustomerSupport@DeSotoAC.com" class="ds-email-link">
+        Email Us: CustomerSupport@DeSotoAC.com
+      </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="ds-hero">
+      <div class="ds-badge">No Dealerships • No Stress • No Scammers</div>
+      <h1>Hate Dealing With Car Hassles? Let Us Do the Hard Work for You.</h1>
+      <p>
+        Most people dread pushy car salesmen, confusing paperwork, and strangers coming to their house. Whether you need to buy a car, sell a classic, or just need help moving or fixing a vehicle, we handle it from start to finish.
+      </p>
+    </div>
+
+    <!-- Three Offerings Grid -->
+    <div class="ds-offerings">
+      <!-- Card 1: Buying / Sourcing -->
+      <div class="ds-price-card">
+        <div>
+          <h3>We Find & Buy Your Next Car</h3>
+          <div class="ds-price-tag">$750 Flat Fee</div>
+          <div class="ds-guarantee">
+            60-Day Promise: 50% Refund ($375 back) if we don't find your car in 60 days.
+          </div>
+          <ul class="ds-checklist">
+            <li>Tell us the car you want and your budget.</li>
+            <li>We search across Colorado and private networks to find a clean, reliable car.</li>
+            <li>We have a trusted mechanic inspect it before you buy.</li>
+            <li>We negotiate a fair price so you skip dealership games.</li>
+          </ul>
+        </div>
+        <a href="#get-started" class="ds-card-btn" onclick="selectServiceFromCard('buy')">Request Car Buying Help &rarr;</a>
+      </div>
+
+      <!-- Card 2: Selling -->
+      <div class="ds-price-card">
+        <div>
+          <h3>We Sell Your Current or Classic Car</h3>
+          <div class="ds-price-tag">5% of Sale Price</div>
+          <div class="ds-guarantee">
+            Simple Terms: Half of the estimated 5% fee is paid upfront, and the rest is paid when your car sells.
+          </div>
+          <ul class="ds-checklist">
+            <li>We take great photos and write the online listings.</li>
+            <li>We answer all calls and emails so strangers never bother you.</li>
+            <li>We meet buyers in safe public places for test drives.</li>
+            <li>You stay hands-off until it is time to sign the title and collect your money.</li>
+          </ul>
+        </div>
+        <a href="#get-started" class="ds-card-btn" onclick="selectServiceFromCard('sell')">Request Car Selling Help &rarr;</a>
+      </div>
+
+      <!-- Card 3: Additional Services -->
+      <div class="ds-price-card">
+        <div>
+          <h3>Additional Services</h3>
+          <div class="ds-price-tag">On-Demand Help</div>
+          <div class="ds-guarantee">
+            Extra Support: Pick one or more services below and we will send you a quick quote.
+          </div>
+          <ul class="ds-checklist">
+            <li><strong>Car Transport:</strong> Safe local or long-distance delivery for your vehicle.</li>
+            <li><strong>Service & Repair Consulting:</strong> We help find trusted mechanics and check repair bills so you don't get overcharged.</li>
+            <li><strong>Fuel Delivery:</strong> Emergency or scheduled gas delivery right to your driveway.</li>
+            <li><strong>Parts Finder:</strong> We track down hard-to-find parts for everyday or classic cars.</li>
+          </ul>
+        </div>
+        <a href="#get-started" class="ds-card-btn" onclick="selectServiceFromCard('additional')">Request Additional Services &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Special Note for Classic Car Owners & Seniors -->
+    <div class="ds-senior-banner">
+      <h3>Need Help Selling a Classic Car or Family Vehicle?</h3>
+      <p>
+        If you or an older family member have a classic car or extra vehicle sitting in the garage, you don't have to worry about internet scammers or haggling with strangers. We treat your car with respect, keep your personal information private, and handle every step safely until the final handoff.
+      </p>
+    </div>
+
+    <!-- Simple 1-Page Request Form -->
+    <div class="ds-form-box" id="get-started">
+      <div class="ds-form-header">
+        <h2>Tell Us How We Can Help You</h2>
+        <p>Fill out this short form below. There is no obligation, and we will email you back right away.</p>
+      </div>
+
+      <form id="ds-simple-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="8665b8e6-e8df-4b63-83af-f409f360e14e">
+        <input type="hidden" name="subject" value="New Customer Request - DeSoto Auto Concierge">
+        <input type="hidden" name="from_name" value="DeSoto Auto Concierge Website">
+        <input type="hidden" id="ds_service_choice" name="service_requested" value="Find a Car to Buy ($750 Flat Fee)">
+
+        <!-- Step 1: Pick One -->
+        <div class="ds-field">
+          <label>1. What do you need help with? (Click one)</label>
+          <div class="ds-choice-grid">
+            <div class="ds-choice-btn active" id="btn-buy" onclick="pickOption('buy', 'Find a Car to Buy ($750 Flat Fee)', this)">
+              <strong>I Want to Buy a Car</strong>
+              <span>$750 flat rate (50% refund if not found in 60 days)</span>
+            </div>
+            <div class="ds-choice-btn" id="btn-sell" onclick="pickOption('sell', 'Sell My Car (5% Total Fee)', this)">
+              <strong>I Want to Sell a Car</strong>
+              <span>5% of sale price (half of estimated fee upfront)</span>
+            </div>
+            <div class="ds-choice-btn" id="btn-additional" onclick="pickOption('additional', 'Additional Services Request', this)">
+              <strong>Additional Services</strong>
+              <span>Car transport, repair advice, fuel delivery, or parts finder</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditional Additional Services Checkboxes -->
+        <div class="ds-addon-box" id="ds-addon-panel">
+          <span class="ds-addon-title">Which Additional Services do you need? (Check all that apply)</span>
+          <div class="ds-checkbox-grid">
+            <label class="ds-checkbox-item">
+              <input type="checkbox" name="additional_services[]" value="Car Transport">
+              Car Transport
+            </label>
+            <label class="ds-checkbox-item">
+              <input type="checkbox" name="additional_services[]" value="Service and Repair Consulting">
+              Service & Repair Consulting
+            </label>
+            <label class="ds-checkbox-item">
+              <input type="checkbox" name="additional_services[]" value="Fuel Delivery">
+              Fuel Delivery
+            </label>
+            <label class="ds-checkbox-item">
+              <input type="checkbox" name="additional_services[]" value="Parts Finder">
+              Parts Finder
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 2: Car Details -->
+        <div class="ds-field-row">
+          <div class="ds-field">
+            <label for="ds_car">2. What kind of car is it?</label>
+            <input type="text" id="ds_car" name="vehicle_details" placeholder="Example: 2020 Toyota RAV4 or 1967 Ford Mustang" required>
+          </div>
+          <div class="ds-field">
+            <label for="ds_price" id="ds_price_label">3. Estimated Price or Budget</label>
+            <input type="text" id="ds_price" name="estimated_price_or_details" placeholder="Example: Around $25,000" required>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact Info -->
+        <div class="ds-field-row">
+          <div class="ds-field">
+            <label for="ds_name">4. Your Full Name</label>
+            <input type="text" id="ds_name" name="client_name" placeholder="First and Last Name" required>
+          </div>
+          <div class="ds-field">
+            <label for="ds_email">5. Your Email Address</label>
+            <input type="email" id="ds_email" name="client_email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="ds-field">
+          <label for="ds_city">6. What City or Town Do You Live In?</label>
+          <input type="text" id="ds_city" name="location" placeholder="Example: Denver, Boulder, Littleton, Colorado Springs" required>
+        </div>
+
+        <div class="ds-field">
+          <label for="ds_notes">7. Tell us a little more about what you need (Optional)</label>
+          <textarea id="ds_notes" name="notes" rows="3" placeholder="Share details like where a car needs to be moved, what part you are looking for, or if it's a classic car..."></textarea>
+        </div>
+
+        <button type="submit" class="ds-submit-btn" id="ds-submit-button">Send My Request &rarr;</button>
+      </form>
+
+      <!-- Thank You Message -->
+      <div class="ds-thank-you" id="ds-confirmation-box">
+        <div class="ds-check-circle">✓</div>
+        <h2 style="margin: 0 0 8px; color: #1a202c;">Thank You! We Got Your Request.</h2>
+        <p style="font-size: 16px; color: #334155;">We have received your details and will reply to your email shortly.</p>
+        
+        <div class="ds-receipt" id="ds-receipt-details"></div>
+
+        <p style="font-size: 15px; color: #64748b;">
+          Need to reach us right away? Email <a href="mailto:CustomerSupport@DeSotoAC.com" style="color: #1e3a5f; font-weight: 700;">CustomerSupport@DeSotoAC.com</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="ds-footer">
+      <p><strong>DeSoto Auto Concierge</strong> • Serving Drivers & Families Across Colorado</p>
+      <p>Questions? Email us anytime at <a href="mailto:CustomerSupport@DeSotoAC.com">CustomerSupport@DeSotoAC.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    function pickOption(mode, label, clickedElement) {
+      var buttons = document.querySelectorAll('.ds-choice-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+      clickedElement.classList.add('active');
+      document.getElementById('ds_service_choice').value = label;
+
+      var addonPanel = document.getElementById('ds-addon-panel');
+      var priceLabel = document.getElementById('ds_price_label');
+      var priceInput = document.getElementById('ds_price');
+
+      if (mode === 'additional') {
+        addonPanel.classList.add('visible');
+        priceLabel.innerText = '3. Pickup/Dropoff City or Part/Repair Needed';
+        priceInput.placeholder = 'Example: Move car from Denver to Boulder, or need brake quote';
+      } else {
+        addonPanel.classList.remove('visible');
+        priceLabel.innerText = '3. Estimated Price or Budget';
+        priceInput.placeholder = 'Example: Around $25,000';
+      }
+    }
+
+    function selectServiceFromCard(mode) {
+      if (mode === 'buy') {
+        pickOption('buy', 'Find a Car to Buy ($750 Flat Fee)', document.getElementById('btn-buy'));
+      } else if (mode === 'sell') {
+        pickOption('sell', 'Sell My Car (5% Total Fee)', document.getElementById('btn-sell'));
+      } else if (mode === 'additional') {
+        pickOption('additional', 'Additional Services Request', document.getElementById('btn-additional'));
+      }
+    }
+
+    document.getElementById('ds-simple-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var btn = document.getElementById('ds-submit-button');
+      var originalText = btn.innerText;
+      btn.innerText = "Sending Your Request...";
+      btn.disabled = true;
+
+      var formData = new FormData(this);
+      var service = document.getElementById('ds_service_choice').value;
+      var car = document.getElementById('ds_car').value;
+      var price = document.getElementById('ds_price').value;
+      var name = document.getElementById('ds_name').value;
+      var email = document.getElementById('ds_email').value;
+      var city = document.getElementById('ds_city').value;
+
+      // Gather checked additional services if any
+      var checkedAddons = [];
+      var checkboxes = document.querySelectorAll('input[name="additional_services[]"]:checked');
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkedAddons.push(checkboxes[i].value);
+      }
+
+      var addonSummary = checkedAddons.length > 0 
+        ? '<p><strong>Selected Add-Ons:</strong> ' + checkedAddons.join(', ') + '</p>' 
+        : '';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        document.getElementById('ds-receipt-details').innerHTML =
+          '<p><strong>Name:</strong> ' + name + '</p>' +
+          '<p><strong>Email:</strong> ' + email + '</p>' +
+          '<p><strong>Service:</strong> ' + service + '</p>' +
+          addonSummary +
+          '<p><strong>Car:</strong> ' + car + '</p>' +
+          '<p><strong>Details / Value:</strong> ' + price + '</p>' +
+          '<p><strong>City:</strong> ' + city + '</p>';
+
+        document.getElementById('ds-simple-form').style.display = 'none';
+        document.querySelector('.ds-form-header').style.display = 'none';
+        document.getElementById('ds-confirmation-box').style.display = 'block';
+      })
+      .catch(function(error) {
+        alert("Something went wrong sending the form. Please email us directly at CustomerSupport@DeSotoAC.com.");
+        btn.innerText = originalText;
+        btn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
